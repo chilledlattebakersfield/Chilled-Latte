@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chilled Latte Bakersfield | Online Ordering</title>
+    <style>
+        :root {
+            --primary: #5c3a21;
+            --accent: #d4a373;
+            --bg: #faedcd;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        h1 {
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .subhead {
+            font-size: 0.95rem;
+            color: #666;
+        }
+        .notice-banner {
+            background: #fefae0;
+            border: 1px solid var(--accent);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .menu-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .item-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--primary);
+        }
+        .item-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 6px 0 12px;
+        }
+        .options-group {
+            margin-bottom: 10px;
+        }
+        label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .add-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .cart-summary {
+            position: sticky;
+            bottom: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            margin-top: 30px;
+        }
+        .cart-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .progress-bar-bg {
+            background: rgba(255,255,255,0.3);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-bar-fill {
+            background: #a3b18a;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .checkout-btn {
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .checkout-btn:disabled {
+            background: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Chilled Latte Bakersfield</h1>
+            <div class="subhead">Handcrafted Canned Lattes</div>
+        </header>
+
+        <div class="notice-banner">
+            🧊 <strong>Freshly Brewed:</strong> Keep refrigerated & enjoy within 24 hours! <br>
+            📌 <strong>Order Requirement:</strong> Minimum 4 drinks required for pickup/delivery.
+        </div>
+
+        <!-- Drink 1 -->
+        <div class="menu-item">
+            <div class="item-title">
+                <span>Cookie Butter Latte ⭐</span>
+                <span>$7.00</span>
+            </div>
+            <div class="item-desc">Espresso, milk, cookie butter syrup, and cold foam. Topped with cookie crumble.</div>
+            
+            <label>Milk Choice:</label>
+            <select id="milk-cookie">
+                <option value="0">Whole Milk ($0.00)</option>
+                <option value="1">Oat Milk (+$1.00)</option>
+                <option value="1">Almond Milk (+$1.00)</option>
+            </select>
+
+            <label>Preparation Style:</label>
+            <select id="style-cookie">
+                <option value="Non-Iced">Non-Iced Can (Standard Pre-order)</option>
+                <option value="Iced">Iced Can</option>
+            </select>
+
+            <button class="add-btn" onclick="addToCart('Cookie Butter Latte', 7.00, 'milk-cookie', 'style-cookie')">Add to Order</button>
+        </div>
+
+        <!-- Drink 2 -->
+        <div class="menu-item">
+            <div class="item-title">
+                <span>Vanilla Sweet Cream Latte</span>
+                <span>$6.00</span>
+            </div>
+            <div class="item-desc">Espresso, milk, vanilla syrup, and sweet cream cold foam.</div>
+            
+            <label>Milk Choice:</label>
+            <select id="milk-vanilla">
+                <option value="0">Whole Milk ($0.00)</option>
+                <option value="1">Oat Milk (+$1.00)</option>
+                <option value="1">Almond Milk (+$1.00)</option>
+            </select>
+
+            <label>Preparation Style:</label>
+            <select id="style-vanilla">
+                <option value="Non-Iced">Non-Iced Can (Standard Pre-order)</option>
+                <option value="Iced">Iced Can</option>
+            </select>
+
+            <button class="add-btn" onclick="addToCart('Vanilla Sweet Cream Latte', 6.00, 'milk-vanilla', 'style-vanilla')">Add to Order</button>
+        </div>
+
+        <!-- Drink 3 -->
+        <div class="menu-item">
+            <div class="item-title">
+                <span>Caramel Latte</span>
+                <span>$6.00</span>
+            </div>
+            <div class="item-desc">Espresso, milk, caramel sauce, and vanilla cold foam. Finished with caramel drizzle.</div>
+            
+            <label>Milk Choice:</label>
+            <select id="milk-caramel">
+                <option value="0">Whole Milk ($0.00)</option>
+                <option value="1">Oat Milk (+$1.00)</option>
+                <option value="1">Almond Milk (+$1.00)</option>
+            </select>
+
+            <label>Preparation Style:</label>
+            <select id="style-caramel">
+                <option value="Non-Iced">Non-Iced Can (Standard Pre-order)</option>
+                <option value="Iced">Iced Can</option>
+            </select>
+
+            <button class="add-btn" onclick="addToCart('Caramel Latte', 6.00, 'milk-caramel', 'style-caramel')">Add to Order</button>
+        </div>
+
+        <!-- Drink 4 -->
+        <div class="menu-item">
+            <div class="item-title">
+                <span>White Chocolate Latte</span>
+                <span>$6.00</span>
+            </div>
+            <div class="item-desc">Espresso, white chocolate sauce, milk, and optional vanilla cold foam.</div>
+            
+            <label>Milk Choice:</label>
+            <select id="milk-white">
+                <option value="0">Whole Milk ($0.00)</option>
+                <option value="1">Oat Milk (+$1.00)</option>
+                <option value="1">Almond Milk (+$1.00)</option>
+            </select>
+
+            <label>Preparation Style:</label>
+            <select id="style-white">
+                <option value="Non-Iced">Non-Iced Can (Standard Pre-order)</option>
+                <option value="Iced">Iced Can</option>
+            </select>
+
+            <button class="add-btn" onclick="addToCart('White Chocolate Latte', 6.00, 'milk-white', 'style-white')">Add to Order</button>
+        </div>
+
+        <!-- Cart Box -->
+        <div class="cart-summary">
+            <div class="cart-title">Your Order (<span id="item-count">0</span>/4 Minimum)</div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 12px;">
+                Total: $<span id="cart-total">0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn" disabled onclick="checkout()">
+                Add 4 Drinks to Order
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let totalItems = 0;
+        let totalPrice = 0;
+
+        function addToCart(name, basePrice, milkSelectId, styleSelectId) {
+            const milkElem = document.getElementById(milkSelectId);
+            const milkUpcharge = parseFloat(milkElem.value);
+            const itemPrice = basePrice + milkUpcharge;
+
+            totalItems += 1;
+            totalPrice += itemPrice;
+
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById('item-count').innerText = totalItems;
+            document.getElementById('cart-total').innerText = totalPrice.toFixed(2);
+
+            const percentage = Math.min((totalItems / 4) * 100, 100);
+            document.getElementById('progress-fill').style.width = percentage + '%';
+
+            const checkoutBtn = document.getElementById('checkout-btn');
+            if (totalItems >= 4) {
+                checkoutBtn.disabled = false;
+                checkoutBtn.innerText = 'Proceed to Checkout';
+            } else {
+                checkoutBtn.disabled = true;
+                const needed = 4 - totalItems;
+                checkoutBtn.innerText = `Add ${needed} More Drink${needed > 1 ? 's' : ''} to Order`;
+            }
+        }
+
+        function checkout() {
+            alert('Order placed successfully! Thank you for ordering from Chilled Latte Bakersfield.');
+        }
+    </script>
+</body>
+</html>
